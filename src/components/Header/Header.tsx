@@ -1,5 +1,19 @@
 import { useDispatch } from "react-redux";
 import { setSearchParams } from "../../redux/searchParamsSlice";
+import {
+  HeaderBox,
+  Title,
+  InputPrimaryBox,
+  InputSecondaryBox,
+  PrimaryFlexBoxForSelect,
+  SecondaryFlexBoxForSelect,
+  Text,
+  Input,
+  SubmitButton,
+  StyledSelect,
+} from "./Header.styled";
+import { MenuItem } from "@mui/material";
+import { ReactComponent as SearchIconSVG } from "../../images/magnifying-glass.svg";
 
 function Header() {
   const dispatch = useDispatch();
@@ -16,33 +30,53 @@ function Header() {
   };
 
   return (
-    <header>
-      <h1>Search for books</h1>
+    <HeaderBox>
+      <Title>Search for books</Title>
       <form onSubmit={handleSubmit}>
-        <input
-          name="query"
-          type="text"
-          placeholder="Search..."
-          aria-label="Search for books"
-        />
-        <p>Categories</p>
-        <select name="category" aria-label="Select category">
-          <option value="all">all</option>
-          <option value="art">art</option>
-          <option value="biography">biography</option>
-          <option value="computers">computers</option>
-          <option value="history">history</option>
-          <option value="medical">medical</option>
-          <option value="poetry">poetry</option>
-        </select>
-        <p>Sorting by</p>
-        <select name="orderBy" aria-label="Select sorting method">
-          <option value="relevance">relevance</option>
-          <option value="newest">newest</option>
-        </select>
-        <button type="submit">Q</button>
+        <InputPrimaryBox>
+          <InputSecondaryBox>
+            <Input
+              name="query"
+              type="text"
+              placeholder="Find knowledge..."
+              aria-label="Search for books"
+            />
+            <SubmitButton type="submit">
+              <SearchIconSVG width="20px" height="20px" />
+            </SubmitButton>
+          </InputSecondaryBox>
+        </InputPrimaryBox>
+        <PrimaryFlexBoxForSelect>
+          <SecondaryFlexBoxForSelect>
+            <Text>Categories</Text>
+            <StyledSelect
+              name="category"
+              aria-label="Select category"
+              defaultValue="all"
+            >
+              <MenuItem value="all">all</MenuItem>
+              <MenuItem value="art">art</MenuItem>
+              <MenuItem value="biography">biography</MenuItem>
+              <MenuItem value="computers">computers</MenuItem>
+              <MenuItem value="history">history</MenuItem>
+              <MenuItem value="medical">medical</MenuItem>
+              <MenuItem value="poetry">poetry</MenuItem>
+            </StyledSelect>
+          </SecondaryFlexBoxForSelect>
+          <SecondaryFlexBoxForSelect>
+            <Text>Sorting by</Text>
+            <StyledSelect
+              name="orderBy"
+              aria-label="Select sorting method"
+              defaultValue="relevance"
+            >
+              <MenuItem value="relevance">relevance</MenuItem>
+              <MenuItem value="newest">newest</MenuItem>
+            </StyledSelect>
+          </SecondaryFlexBoxForSelect>
+        </PrimaryFlexBoxForSelect>
       </form>
-    </header>
+    </HeaderBox>
   );
 }
 

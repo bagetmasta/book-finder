@@ -8,7 +8,7 @@ function App() {
       <main>
         <BookList />
       </main>
-      <footer>Thank you books for the broad outlook</footer>
+      <footer>Thank you books for the broad outlook!</footer>
     </>
   );
 }
