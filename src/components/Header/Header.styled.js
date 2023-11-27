@@ -37,6 +37,7 @@ export const Input = styled.input`
 
   &::placeholder {
     color: #888;
+    font-family: "Roboto";
     font-style: italic;
   }
 

@@ -1,14 +1,16 @@
-import Header from "./Header/Header";
-import BookList from "./BookList/BookList";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+
+const Home = lazy(() => import("../pages/Home"));
 
 function App() {
   return (
     <>
-      <Header />
-      <main>
-        <BookList />
-      </main>
-      <footer>Thank you books for the broad outlook!</footer>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
