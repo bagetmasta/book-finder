@@ -14,19 +14,31 @@ import {
 } from "./Header.styled";
 import { MenuItem } from "@mui/material";
 import { ReactComponent as SearchIconSVG } from "../../images/magnifying-glass.svg";
+import Notiflix from "notiflix";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 function Header() {
   const dispatch = useDispatch();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Form submitted");
     const formData = new FormData(event.currentTarget);
     const query = formData.get("query") as string;
     const category = formData.get("category") as string;
     const orderBy = formData.get("orderBy") as string;
+
+    if (!query.trim()) {
+      Notiflix.Notify.warning("Please enter a search term.");
+      return;
+    }
+
     console.log(query, category, orderBy);
-    dispatch(setSearchParams({ query, category, orderBy }));
+    Loading.hourglass("Loading...");
+    await dispatch(
+      setSearchParams({ query, category, orderBy, page: 1, newSearch: true })
+    );
+    Loading.remove();
   };
 
   return (

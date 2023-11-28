@@ -11,10 +11,13 @@ export const bookApi = createApi({
         const maxResults = 30;
         const startIndex = (page - 1) * maxResults;
         const queryParam = category === 'all' ? query : `subject:${category}+${query}`;
-        return `/volumes?q=${queryParam}&orderBy=${orderBy}&maxResults=${maxResults}&startIndex=${startIndex}&key=${API_KEY}`;
+        const result =  `/volumes?q=${queryParam}&orderBy=${orderBy}&maxResults=${maxResults}&startIndex=${startIndex}&key=${API_KEY}`;
+        console.log(result)
+        return result;
       }
     }),
   }),
 });
 
 export const { useFetchBooksQuery } = bookApi;
+

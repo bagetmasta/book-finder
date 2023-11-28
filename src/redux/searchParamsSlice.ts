@@ -4,7 +4,8 @@ const initialState = {
   query: "",
   category: "all",
   orderBy: "relevance",
-  page: 1
+  page: 1,
+  newSearch: true
 };
 
 export const searchParamsSlice = createSlice({

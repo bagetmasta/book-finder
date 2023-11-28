@@ -1,4 +1,4 @@
-import { Item } from "./BookItem.styled";
+import { Item, Photo, Box, Title, Category, Authors } from "./BookItem.styled";
 
 interface BookItemProps {
   title: string;
@@ -10,10 +10,14 @@ interface BookItemProps {
 function BookItem({ title, image, authors, categories }: BookItemProps) {
   return (
     <Item>
-      <div>{title}</div>
-      <div>{image}</div>
-      <div>{authors}</div>
-      <div>{categories}</div>
+      <Photo src={image} alt={title} />
+      <Box>
+        {categories && <Category>{categories[0]}</Category>}
+        <div>
+          <Title>{title}</Title>
+          {authors && <Authors>{authors.join(", ")}</Authors>}
+        </div>
+      </Box>
     </Item>
   );
 }
