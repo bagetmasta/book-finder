@@ -46,6 +46,8 @@ function BookList() {
         setBooks((prevBooks) => [...prevBooks, ...newBooks]);
         newBooks.forEach((book: Book) => bookIds.add(book.id));
       }
+    } else if (searchParams.page === 1) {
+      setBooks([]);
     }
   }, [data, searchParams.page]);
 
@@ -68,6 +70,7 @@ function BookList() {
   return (
     <>
       <Section>
+        {books.length === 0 && <Title>Found {data?.totalItems} results</Title>}
         {books.length > 0 ? (
           <>
             <Title>Found {data?.totalItems} results</Title>
