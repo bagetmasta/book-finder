@@ -76,22 +76,3 @@ function BookDetails() {
 }
 
 export default BookDetails;
-
-// {/* <Box
-// // display="flex"
-// // justifyContent="center"
-// // alignItems="center"
-// // height="50vh"
-// >
-//   <Card sx={{ maxWidth: 500 }}>
-//     <CardContent>
-//       <Typography gutterBottom variant="h5" component="p">
-//         {cleanDescription}
-//       </Typography>
-//       {/* <Typography variant="body2" color="text.secondary">
-//         Start searching for books and uncover all the secrets of the
-//         world.
-//       </Typography> */}
-//     </CardContent>
-//   </Card>
-// </Box> */}
