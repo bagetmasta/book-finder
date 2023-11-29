@@ -29,8 +29,11 @@ function BookList() {
   const [books, setBooks] = useState<Book[]>([]);
   const [bookIds, setBookIds] = useState(new Set<string>());
   const searchParams = useSelector((state: RootState) => state.searchParams);
+  const [hasMorePages, setHasMorePages] = useState(true);
 
-  const { data, error } = useFetchBooksQuery(searchParams, {
+  const maxResults = 30;
+
+  const { data } = useFetchBooksQuery(searchParams, {
     skip: searchParams.query === "",
   });
 
@@ -39,12 +42,16 @@ function BookList() {
       if (searchParams.page === 1) {
         setBooks(data.items);
         setBookIds(new Set(data.items.map((book: Book) => book.id)));
+        setHasMorePages(data.items.length === maxResults);
       } else {
         const newBooks = data.items.filter(
           (book: Book) => !bookIds.has(book.id)
         );
         setBooks((prevBooks) => [...prevBooks, ...newBooks]);
         newBooks.forEach((book: Book) => bookIds.add(book.id));
+        if (data.items.length < maxResults) {
+          setHasMorePages(false);
+        }
       }
     } else if (searchParams.page === 1) {
       setBooks([]);
@@ -70,7 +77,9 @@ function BookList() {
   return (
     <>
       <Section>
-        {books.length === 0 && <Title>Found {data?.totalItems} results</Title>}
+        {searchParams.query && books.length === 0 && data && (
+          <Title>Found {data.totalItems} results</Title>
+        )}
         {books.length > 0 ? (
           <>
             <Title>Found {data?.totalItems} results</Title>
@@ -92,9 +101,11 @@ function BookList() {
                 );
               })}
             </BooksList>
-            <Button type="button" onClick={handleLoadMore}>
-              Load more
-            </Button>
+            {hasMorePages && data.totalItems > 0 && (
+              <Button type="button" onClick={handleLoadMore}>
+                Load more
+              </Button>
+            )}
           </>
         ) : (
           !searchParams.hasSearch && (
