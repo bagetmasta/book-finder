@@ -14,6 +14,8 @@ Under the hood, Redux is employed for state management, offering a robust and pr
 
 The Book Finder project is meticulously structured, adhering to best coding practices with a logical folder hierarchy and a clear GIT history of commits. It is initialized with Create React App, ensuring a reliable and standardized development, build, and deployment process.
 
+The Book Finder application features fully responsive design, seamlessly adapting to different screen sizes from as small as 320 pixels in width. This ensures a consistent and user-friendly experience across all devices, ranging from mobile phones to desktop monitors.
+
 In summary, the Book Finder app is a testament to the power of React, combined with the elegance of styled-components and MUI, the reliability of Redux and TypeScript, and the seamless navigation provided by React Router. It stands as a shining example of clean coding, user-centered design, and interactive web application development.
 
 ---
