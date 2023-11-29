@@ -65,8 +65,6 @@ function BookList() {
     setIsFetching(false);
   };
 
-  console.log(data, error);
-
   return (
     <>
       <Section>
@@ -82,6 +80,7 @@ function BookList() {
                 return (
                   <BookItem
                     key={id}
+                    id={id}
                     title={title}
                     image={imageLinks?.thumbnail || TEMPLATE_PHOTO}
                     authors={authors}
@@ -95,24 +94,26 @@ function BookList() {
             </Button>
           </>
         ) : (
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="50vh"
-          >
-            <Card sx={{ maxWidth: 345 }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Begin your quest for Knowledge!
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Start searching for books and uncover all the secrets of the
-                  world.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
+          !searchParams.hasSearch && (
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              height="50vh"
+            >
+              <Card sx={{ maxWidth: 345 }}>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Begin your quest for Knowledge!
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Start searching for books and uncover all the secrets of the
+                    world.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+          )
         )}
       </Section>
     </>

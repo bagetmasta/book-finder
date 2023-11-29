@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const API_KEY = 'AIzaSyAQROnMsoeFLwQrFWkan4uJpTI0rO4Vyeo';
 
+// Запасной ключ
+// AIzaSyBBA37PHb5UjrZfGBvNsHUF8xct7TRybJ8
+
+
 export const bookApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://www.googleapis.com/books/v1' }),
@@ -11,9 +15,8 @@ export const bookApi = createApi({
         const maxResults = 30;
         const startIndex = (page - 1) * maxResults;
         const queryParam = category === 'all' ? query : `subject:${category}+${query}`;
-        const result =  `/volumes?q=${queryParam}&orderBy=${orderBy}&maxResults=${maxResults}&startIndex=${startIndex}&key=${API_KEY}`;
-        console.log(result)
-        return result;
+         return`/volumes?q=${queryParam}&orderBy=${orderBy}&maxResults=${maxResults}&startIndex=${startIndex}&key=${API_KEY}`;
+        
       }
     }),
   }),

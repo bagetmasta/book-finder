@@ -8,7 +8,6 @@ function Home() {
       <main>
         <BookList />
       </main>
-      {/* <footer>Thank you books for the broad outlook!</footer> */}
     </>
   );
 }

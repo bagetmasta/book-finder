@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setSearchParams } from "../../redux/searchParamsSlice";
+import { useNavigate } from "react-router-dom";
 import {
   HeaderBox,
   Title,
@@ -19,24 +20,25 @@ import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form submitted");
     const formData = new FormData(event.currentTarget);
     const query = formData.get("query") as string;
-    const category = formData.get("category") as string;
-    const orderBy = formData.get("orderBy") as string;
 
     if (!query.trim()) {
       Notiflix.Notify.warning("Please enter a search term.");
       return;
     }
 
-    console.log(query, category, orderBy);
+    navigate("/", { replace: true });
+    const category = formData.get("category") as string;
+    const orderBy = formData.get("orderBy") as string;
+
     Loading.hourglass("Loading...");
     await dispatch(
-      setSearchParams({ query, category, orderBy, page: 1, newSearch: true })
+      setSearchParams({ query, category, orderBy, page: 1, hasSearch: true })
     );
     Loading.remove();
   };

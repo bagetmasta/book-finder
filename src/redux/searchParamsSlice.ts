@@ -5,7 +5,7 @@ const initialState = {
   category: "all",
   orderBy: "relevance",
   page: 1,
-  newSearch: true
+  hasSearch: false
 };
 
 export const searchParamsSlice = createSlice({
